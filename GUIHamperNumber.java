@@ -4,37 +4,37 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.FlowLayout;
 
-public class GUIProject extends JFrame implements ActionListener, MouseListener{
+public class GUIHamperNumber extends JFrame implements ActionListener, MouseListener{
 
     private int hampers;
     
-    private JLabel instructions;
+    private JLabel instructions;  					//initialize variables
     private JLabel hampLabel;
     
     private JTextField hampInput;
     
-    public GUIProject(){
-        super("Fill out the form for hampers");
+    public GUIHamperNumber(){
+        super("Fill out the form for hampers");			
         setupGUI();
-        setSize(1920,1080);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
+        setSize(1920,1080);					//window size
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        	//close window on exit
         
     }
     
     public void setupGUI(){
         
-        instructions = new JLabel("Please enter the number of hampers you require.");
-        hampLabel = new JLabel("Number of Hampers:");
+        instructions = new JLabel("Please enter the number of hampers you require.");			//Instruction for what to do
+        hampLabel = new JLabel("Number of Hampers:");				//label describing 
         
-        hampInput = new JTextField("e.g. 2", 15);    
+        hampInput = new JTextField("e.g. 2", 15);    		//Example of what to enter
         
-        hampInput.addMouseListener(this);
+        hampInput.addMouseListener(this);					//check for mouse click
         
-        JButton submitInfo = new JButton("Submit");
-        submitInfo.addActionListener(this);
+        JButton submitInfo = new JButton("Submit");			//button for submit
+        submitInfo.addActionListener(this);					//check for mouse click
         
         JPanel headerPanel = new JPanel();
-        headerPanel.setLayout(new FlowLayout());
+        headerPanel.setLayout(new FlowLayout());			//layout setup
         
         JPanel clientPanel = new JPanel();
         clientPanel.setLayout(new FlowLayout());
@@ -53,15 +53,19 @@ public class GUIProject extends JFrame implements ActionListener, MouseListener{
     }
     
     public void actionPerformed(ActionEvent event){
-    	 hampers = Integer.parseInt(hampInput.getText());
+    	 hampers = Integer.parseInt(hampInput.getText());			//saving and validating info
         
         if(validateInput()){
             String hampNum = idProcessing();
-            JOptionPane.showMessageDialog(this, "Your pet's clinic ID is " + hampNum);
+            JOptionPane.showMessageDialog(this, "Your number of hampers is " + hampNum);
+            EventQueue.invokeLater(() -> {							//calling next GUI
+                new GUIHamper().setVisible(true);        
+            });
+            
         }
     }
     
-    public void mouseClicked(MouseEvent event){
+    public void mouseClicked(MouseEvent event){					///mouse checks
         if(event.getSource().equals(hampInput))
         	hampInput.setText("");
                 
@@ -85,18 +89,18 @@ public class GUIProject extends JFrame implements ActionListener, MouseListener{
     
     private String idProcessing(){
 
-        String petID = new String(String.valueOf(firstName.charAt(0)) + String.valueOf(lastName.charAt(0)) + String.valueOf(petName.charAt(0)) + String.valueOf(birthYear));
+        String ham = new String(String.valueOf(hampers));				//Saving hampers
         
-        return petID;
+        return ham;
     }    
     
-    private boolean validateInput(){
+    private boolean validateInput(){				//Validates if input is working
         
         boolean allInputValid = true;
 
         if(hampers < 1){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, hampers + " is an invalid birth year. Pets must be born between 1922 and 2022.");
+            JOptionPane.showMessageDialog(this, hampers + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of working message
         }
         
         return allInputValid;
@@ -106,10 +110,11 @@ public class GUIProject extends JFrame implements ActionListener, MouseListener{
     
     public static void main(String[] args) {
         
-        EventQueue.invokeLater(() -> {
-            new GUIProject().setVisible(true);        
+        EventQueue.invokeLater(() -> {						//calls GUI
+            new GUIHamperNumber().setVisible(true);        
         });
     }
         
 }
+    
       
