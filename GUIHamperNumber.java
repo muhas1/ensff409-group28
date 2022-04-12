@@ -1,3 +1,4 @@
+package edu.ucalgary.ensf409;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.*;
@@ -6,7 +7,7 @@ import java.awt.FlowLayout;
 
 public class GUIHamperNumber extends JFrame implements ActionListener, MouseListener{
 
-    private int hampers;
+    private static int hampers;
     
     private JLabel instructions;  					//initialize variables
     private JLabel hampLabel;
@@ -58,6 +59,7 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
         if(validateInput()){
             String hampNum = idProcessing();
             JOptionPane.showMessageDialog(this, "Your number of hampers is " + hampNum);
+            new GUIHamper();
             EventQueue.invokeLater(() -> {							//calling next GUI
                 new GUIHamper().setVisible(true);        
             });
@@ -106,6 +108,12 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
         return allInputValid;
         
     }
+    
+    
+    
+    public static int getHamperNumber() {
+		return hampers;
+	}
 
     
     public static void main(String[] args) {
@@ -114,7 +122,8 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
             new GUIHamperNumber().setVisible(true);        
         });
     }
+
+	
         
 }
-    
       
