@@ -9,12 +9,12 @@ import java.awt.FlowLayout;
 public class GUIHamper extends JFrame implements ActionListener, MouseListener{
 
 	private static int hNum = 1;
-    private int mAdult;
+    private int mAdult;							//initialize variables needed 
     private int fAdult;
     private int overChild;
     private int underChild;
     
-    private JLabel instructions;  					//initialize variables
+    private JLabel instructions;  					
     private JLabel mAdultLabel;
     private JLabel fAdultLabel;
     private JLabel overChildLabel;
@@ -136,19 +136,19 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
 
         if(mAdult < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, mAdult + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of working message
+            JOptionPane.showMessageDialog(this, mAdult + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
         }
         if(fAdult < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, fAdult + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of working message
+            JOptionPane.showMessageDialog(this, fAdult + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
         }
         if(overChild < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, overChild + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of working message
+            JOptionPane.showMessageDialog(this, overChild + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
         }
         if(underChild < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, underChild + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of working message
+            JOptionPane.showMessageDialog(this, underChild + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
         }
         
         return allInputValid;
