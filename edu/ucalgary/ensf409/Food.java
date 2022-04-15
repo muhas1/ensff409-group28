@@ -3,7 +3,7 @@ package edu.ucalgary.ensf409;
 public class Food {
     
     private String[] FOODINFO = new String[2];
-    private NutritionInfo NUTR_INFO = new NutritionInfo(0, 0, 0, 0, 0);
+    private NutritionInfo NUTR_INFO = new NutritionInfo("0", "0", "0", "0", "0");
 
     public Food(String[] info, NutritionInfo nInfo) {
         this.FOODINFO = info;

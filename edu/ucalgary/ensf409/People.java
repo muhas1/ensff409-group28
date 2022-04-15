@@ -1,12 +1,12 @@
 package edu.ucalgary.ensf409;
 
 public class People {
-	private final int ID = 0;
-	private final String AGE = null;
-	private final NutrionalInfo NEEDS = null;
+	private int ID = 0;
+	private String AGE = null;
+	private NutritionInfo NEEDS = null;
 	
 	
-	public People(int id, String age, NutrionalInfo needs) {
+	public People(int id, String age, NutritionInfo needs) {
 		this.ID = id;
 		this.AGE = age;
 		this.NEEDS = needs;
@@ -17,7 +17,7 @@ public class People {
 		return this.ID;
 	}
 	
-	public NutrionalInfo returnNeeds() {
+	public NutritionInfo returnNeeds() {
 		return this.NEEDS;
 	}
 	

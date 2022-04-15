@@ -12,13 +12,13 @@ public class NutritionInfo {
     private int OTHER;
     private int[] nutritionArray; 
 
-    public NutritionInfo(int fV, int cals, int grain, int prot, int other) {
+    public NutritionInfo(String fV, String cals, String grain, String prot, String other) {
 
-        this.FRUITVEGGIES = fV;
-        this.CALORIES = cals;
-        this.GRAINS = grain;
-        this.PROTEIN = prot;
-        this.OTHER = other;
+        this.FRUITVEGGIES = Integer.parseInt(fV);
+        this.CALORIES = Integer.parseInt(cals);
+        this.GRAINS = Integer.parseInt(grain);
+        this.PROTEIN = Integer.parseInt(prot);
+        this.OTHER = Integer.parseInt(other);
 
     }
 
