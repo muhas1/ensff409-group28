@@ -5,54 +5,53 @@ package edu.ucalgary.ensf409;
 public class NutritionInfo {
     
 
-    private int FRUITVEGGIES;
-    private int CALORIES;
-    private int GRAINS;
-    private int PROTEIN;
-    private int OTHER;
-    private int[] nutritionArray; 
+    private double FRUITVEGGIES;
+    private double CALORIES;
+    private double GRAINS;
+    private double PROTEIN;
+    private double OTHER;
+    private double[] nutritionArray = new double[5]; 
 
     public NutritionInfo(String fV, String cals, String grain, String prot, String other) {
-
-        this.FRUITVEGGIES = Integer.parseInt(fV);
         this.CALORIES = Integer.parseInt(cals);
+        this.FRUITVEGGIES = Integer.parseInt(fV);
         this.GRAINS = Integer.parseInt(grain);
         this.PROTEIN = Integer.parseInt(prot);
         this.OTHER = Integer.parseInt(other);
 
     }
 
-    public int getFV() {
+    public double getFV() {
 
-        return this.FRUITVEGGIES;
-
-    }
-
-    public int getGrains() {
-
-        return this.GRAINS;
+        return (this.CALORIES * this.FRUITVEGGIES/100);
 
     }
 
-    public int getProtein() {
+    public double getGrains() {
 
-        return this.PROTEIN;
+        return (this.CALORIES * this.GRAINS/100);
 
     }
 
-    public int getCalories() {
+    public double getProtein() {
+
+        return (this.CALORIES * this.PROTEIN/100);
+
+    }
+
+    public double getCalories() {
 
         return this.CALORIES;
 
     }
 
-    public int getOther() {
+    public double getOther() {
 
-        return this.OTHER;
+        return (this.CALORIES * this.OTHER/100);
 
     }
 
-    public int[] getNutArray() {
+    public double[] getNutArray() {
 
         return this.nutritionArray;
 

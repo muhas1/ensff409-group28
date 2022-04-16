@@ -26,23 +26,23 @@ public class Food {
         return this.FOODINFO[1];
     }
 
-    public int getFruitsVeggies() {
+    public double getFruitsVeggies() {
         return this.NUTR_INFO.getFV();
     }
 
-    public int getCalories() {
+    public double getCalories() {
         return this.NUTR_INFO.getCalories();
     }
     
-    public int getProtein() {
+    public double getProtein() {
         return this.NUTR_INFO.getProtein();
     }
     
-    public int getOther() {
+    public double getOther() {
         return this.NUTR_INFO.getOther();
     }
 
-    public int getGrains() {
+    public double getGrains() {
         return this.NUTR_INFO.getGrains();
     }
 

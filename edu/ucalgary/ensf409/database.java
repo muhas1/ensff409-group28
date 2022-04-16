@@ -10,8 +10,8 @@ import java.sql.*;
 public class database {
 
     private String DBURL = "";
-    private static NutritionInfo[] daily_client_needs = new NutritionInfo[4];
-    private static ArrayList<Food> availabe_food = new ArrayList<Food>();
+    private NutritionInfo[] daily_client_needs = new NutritionInfo[4];
+    private ArrayList<Food> availabe_food = new ArrayList<Food>();
 
     private static Connection dbConnect;
     private static ResultSet results;
@@ -32,7 +32,7 @@ public class database {
          return this.DBURL;
     }
 
-    public NutritionInfo[] fillClientNeeds() {
+    public void fillClientNeeds() {
 
         NutritionInfo temporaryStorage[] = new NutritionInfo[4];
 
@@ -50,10 +50,10 @@ public class database {
             e.printStackTrace();
         }
 
-        return temporaryStorage;
+        this.daily_client_needs = temporaryStorage;
     }
 
-    public static void fillFoodList() {
+    public void fillFoodList() {
 
         try {
             Statement mySmt = dbConnect.createStatement();
@@ -65,7 +65,7 @@ public class database {
                 tempString[0] = results.getString("ItemID");
                 tempString[1] = results.getString("Name");
                 Food tempFoodItem = new Food(tempString, tempInfo);
-                availabe_food.add(tempFoodItem);
+                this.availabe_food.add(tempFoodItem);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -73,14 +73,26 @@ public class database {
 
     }
 
-    // Simply for testing purposes
-    public static void main(String[] args) {
-        database myInventory = new database("jdbc:mysql://localhost/food_inventory");
-        myInventory.createConnection();
-        daily_client_needs = myInventory.fillClientNeeds();
-        System.out.println(daily_client_needs[1].getCalories());
-        fillFoodList();
-        Food newItem = availabe_food.get(1);
-        System.out.println(newItem.getFoodID());
+    public NutritionInfo[] getClients() {
+        return this.daily_client_needs;
     }
+
+    public ArrayList<Food> getFoodItems() {
+        return this.availabe_food;
+    }
+
+    public Food returnFoodItem(int id) {
+        return this.availabe_food.get(id-1);
+    }
+
+    // Simply for testing purposes
+    // public static void main(String[] args) {
+    //     database myInventory = new database("jdbc:mysql://localhost/food_inventory");
+    //     myInventory.createConnection();
+    //     myInventory.fillClientNeeds();
+    //     System.out.println(myInventory.daily_client_needs[1].getCalories());
+    //     myInventory.fillFoodList();
+    //     Food newItem = myInventory.availabe_food.get(154);
+    //     System.out.println(newItem.getFoodID());
+    // }
 }
