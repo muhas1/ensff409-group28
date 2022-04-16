@@ -11,10 +11,10 @@ public class database {
 
     private String DBURL = "";
     private static NutritionInfo[] daily_client_needs = new NutritionInfo[4];
-    private ArrayList<Food> availabe_food = new ArrayList<Food>();
+    private static ArrayList<Food> availabe_food = new ArrayList<Food>();
 
-    private Connection dbConnect;
-    private ResultSet results;
+    private static Connection dbConnect;
+    private static ResultSet results;
 
     public database(String db_URL) {
         this.DBURL = db_URL;
@@ -53,10 +53,34 @@ public class database {
         return temporaryStorage;
     }
 
+    public static void fillFoodList() {
+
+        try {
+            Statement mySmt = dbConnect.createStatement();
+            results = mySmt.executeQuery("SELECT * FROM AVAILABLE_FOOD");
+            int i = 0;
+            while (results.next()) {
+                NutritionInfo tempInfo = new NutritionInfo(results.getString("FVContent"), results.getString("Calories"), results.getString("GrainContent"), results.getString("ProContent"), results.getString("Other"));
+                String[] tempString = new String[2];
+                tempString[0] = results.getString("ItemID");
+                tempString[1] = results.getString("Name");
+                Food tempFoodItem = new Food(tempString, tempInfo);
+                availabe_food.add(tempFoodItem);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // Simply for testing purposes
     public static void main(String[] args) {
         database myInventory = new database("jdbc:mysql://localhost/food_inventory");
         myInventory.createConnection();
         daily_client_needs = myInventory.fillClientNeeds();
         System.out.println(daily_client_needs[1].getCalories());
+        fillFoodList();
+        Food newItem = availabe_food.get(1);
+        System.out.println(newItem.getFoodID());
     }
 }
