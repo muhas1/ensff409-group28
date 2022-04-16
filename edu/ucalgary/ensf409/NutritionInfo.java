@@ -21,6 +21,14 @@ public class NutritionInfo {
 
     }
 
+    public NutritionInfo(Double fV, Double cals, Double grain, Double prot, Double other) {
+        this.CALORIES = cals;
+        this.FRUITVEGGIES = fV;
+        this.GRAINS = grain;
+        this.PROTEIN = prot;
+        this.OTHER = other;
+    }
+
     public double getFV() {
 
         return (this.CALORIES * this.FRUITVEGGIES/100);

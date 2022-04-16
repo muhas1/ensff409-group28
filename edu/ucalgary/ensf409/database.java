@@ -77,6 +77,10 @@ public class database {
         return this.daily_client_needs;
     }
 
+    public NutritionInfo getClient(int id) {
+        return this.daily_client_needs[id];
+    }
+
     public ArrayList<Food> getFoodItems() {
         return this.availabe_food;
     }
