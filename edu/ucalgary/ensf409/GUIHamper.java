@@ -4,17 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.awt.FlowLayout;
 
 public class GUIHamper extends JFrame implements ActionListener, MouseListener{
 
-	private static int hNum = 1;
-    private int mAdult;							//initialize variables needed 
+    private int mAdult;
     private int fAdult;
     private int overChild;
     private int underChild;
     
-    private JLabel instructions;  					
+    private JLabel instructions;  					//initialize variables
     private JLabel mAdultLabel;
     private JLabel fAdultLabel;
     private JLabel overChildLabel;
@@ -24,7 +24,15 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
     private JTextField fAdultInput;
     private JTextField overChildInput;
     private JTextField underChildInput;
+    private ArrayList<Integer> clients = new ArrayList<Integer>(); 
     
+    public void setClients(int a, int f, int co, int cu) {
+        clients.add(a);
+        clients.add(f);
+        clients.add(co);
+        clients.add(cu);
+    }
+
     public GUIHamper(){
         super("Fill out the form for hampers");			
         setupGUI();
@@ -35,7 +43,7 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
     
     public void setupGUI(){
         
-    	instructions = new JLabel("Please enter the number of hampers you require.");			//Instruction for what to do
+        instructions = new JLabel("Please enter the number of hampers you require.");			//Instruction for what to do
         mAdultLabel = new JLabel("Number of adult males:");				//label describing 
         fAdultLabel = new JLabel("Number of adult females:");
         overChildLabel = new JLabel("Number of children older than 8:");
@@ -87,8 +95,9 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
     	 underChild = Integer.parseInt(underChildLabel.getText());
         
         if(validateInput()){
-            String hampNum = idProcessing();
-            JOptionPane.showMessageDialog(this, "Your number of hampers is " + hampNum);
+            setClients(mAdult, fAdult, overChild, underChild);
+            // String hampNum = idProcessing();
+            JOptionPane.showMessageDialog(this, "Hamper created");
             
         }
     }
@@ -121,14 +130,14 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         
     }
     
-    private String idProcessing(){
+    // private String idProcessing(){
 
-        String ham = new String("Number of adult males: " + String.valueOf(mAdult) + "\n");				//Saving hampers
-        ham = ham + ("Number of adult females: " + String.valueOf(fAdult) + "\n");
-        ham = ham + ("Number of children older than 8: " + String.valueOf(overChild) + "\n");
-        ham = ham + ("Number of children younger than 8: " + String.valueOf(underChild) + "\n");
-        return ham;
-    }    
+    //     String ham = new String("Number of adult males: " + String.valueOf(mAdult) + "\n");				//Saving hampers
+    //     ham = ham + ("Number of adult females: " + String.valueOf(fAdult) + "\n");
+    //     ham = ham + ("Number of children older than 8: " + String.valueOf(overChild) + "\n");
+    //     ham = ham + ("Number of children younger than 8: " + String.valueOf(underChild) + "\n");
+    //     return ham;
+    // }    
     
     private boolean validateInput(){				//Validates if input is working
         
@@ -136,33 +145,32 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
 
         if(mAdult < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, mAdult + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
+            JOptionPane.showMessageDialog(this, mAdult + " Invalid number of Adult males, must be at least 0.");			//dialogue of working message
         }
         if(fAdult < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, fAdult + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
+            JOptionPane.showMessageDialog(this, fAdult + " Invalid number of Adult females, must be at least 0.");			//dialogue of working message
         }
         if(overChild < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, overChild + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
+            JOptionPane.showMessageDialog(this, overChild + " Invalid number of children over 8, must be at least 0.");			//dialogue of working message
         }
         if(underChild < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, underChild + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
+            JOptionPane.showMessageDialog(this, underChild + " Invalid number of children under 8, must be at least 0.");			//dialogue of working message
+        }
+        
+        if(mAdult == 0 && fAdult == 0 && overChild == 0 && underChild == 0){
+            allInputValid = false;
+            JOptionPane.showMessageDialog(this, " There are no memebers inside the hamper");			//dialogue of working message
         }
         
         return allInputValid;
         
     }
 
-    // public static void main(String[] args) {
-    //     hNum = GUIHamperNumber.getHamperNumber();
-    //     for(int i = 1; i <= hNum; i++) {
-    //     	EventQueue.invokeLater(() -> {						//calls GUI
-    //     		new GUIHamper().setVisible(true);      
-
-    //     });
-    //     }
-    // }
+    public ArrayList<Integer> returnClients() {
+        return this.clients;
+    }
         
 }

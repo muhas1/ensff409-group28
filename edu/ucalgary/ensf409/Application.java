@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class Application {
     
+    private int adultM;
+    private int adultF;
+    private int childO;
+    private int childU;
+
     public static void main(String[] args) {
         database myInventory = new database("jdbc:mysql://localhost/food_inventory");
         myInventory.createConnection();
@@ -25,6 +30,8 @@ public class Application {
 
         Hamper newHamper = new Hamper(newF, newFoodList);
         System.out.println(newHamper.getActualNutrition().getProtein());
+
+        GUIHamperNumber.guiCaller();
 
     }
 }   

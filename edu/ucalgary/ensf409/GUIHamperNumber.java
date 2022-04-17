@@ -22,7 +22,7 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
         
     }
     
-    public void setupGUI(){
+    public void setupGUI() {
         
         instructions = new JLabel("Please enter the number of hampers you require.");			//Instruction for what to do
         hampLabel = new JLabel("Number of Hampers:");				//label describing 
@@ -59,11 +59,13 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
         if(validateInput()){
             String hampNum = idProcessing();
             JOptionPane.showMessageDialog(this, "Your number of hampers is " + hampNum);
-            new GUIHamper();
-            EventQueue.invokeLater(() -> {							//calling next GUI
-                new GUIHamper().setVisible(true);        
+            for (int i = 1; i <= Integer.valueOf(hampNum); i++) {			//Calls hampers multiple hampers when required
+            	new GUIHamper();
+            	EventQueue.invokeLater(() -> {							//calling next GUI
+            		new GUIHamper().setVisible(true);        
             });
             
+            }
         }
     }
     
@@ -102,7 +104,7 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
 
         if(hampers < 1){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, hampers + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of working message
+            JOptionPane.showMessageDialog(this, hampers + " Invalid number of hampers must be greater than 1.");			//dialogue of working message
         }
         
         return allInputValid;
@@ -116,7 +118,7 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
 	}
 
     
-    public static void main(String[] args) {
+    public static void guiCaller() {
         
         EventQueue.invokeLater(() -> {						//calls GUI
             new GUIHamperNumber().setVisible(true);        
@@ -126,4 +128,4 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
 	
         
 }
-      
+
