@@ -24,7 +24,7 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
     private JTextField fAdultInput;
     private JTextField overChildInput;
     private JTextField underChildInput;
-    private static ArrayList<Integer> clients = new ArrayList<Integer>(); 
+    private ArrayList<Integer> clients = new ArrayList<Integer>(); 
     
     public void setClients(int a, int f, int co, int cu) {
         clients.add(a);
@@ -96,8 +96,32 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         
         if(validateInput()){
             setClients(mAdult, fAdult, overChild, underChild);
+            int numHamp = GUIHamperNumber.getHamperNumber();
+            
+            database myInventory = new database("jdbc:mysql://localhost/food_inventory");
+            myInventory.createConnection();
+            myInventory.fillClientNeeds();
+            myInventory.fillFoodList();
+            Food newItem = myInventory.returnFoodItem(1);
+            // ArrayList<Food> newList = myInventory.getFoodItems();
+            System.out.println(newItem.getFruitsVeggies());
+            People newPerson = new People(1, "AdultM", myInventory.getClient(1));
+            People newPerson2 = new People(1, "AdultM", myInventory.getClient(1));
+            //System.out.println(newPerson.returnNeeds().getGrains());
+            Food[] newFoodList = new Food[10];
+            for(int i = 0; i < newFoodList.length; i++) {
+                newFoodList[i] = myInventory.returnFoodItem(i+1);
+            }
+            People[] newF = new People[2];
+            newF[0] = newPerson;
+            newF[1] = newPerson2;
+
+            Hamper newHamper = new Hamper(newF, newFoodList);
+            System.out.println(newHamper.getActualNutrition().getProtein());
+
+
             String hampVals = idProcessing();
-            JOptionPane.showMessageDialog(this, clients);
+            JOptionPane.showMessageDialog(this, "Hamper created with: " + "\n" + hampVals);
             this.dispose();
             
         }
@@ -170,9 +194,8 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         
     }
 
-    public static ArrayList<Integer> returnClients() {
-        return clients;
+    public ArrayList<Integer> returnClients() {
+        return this.clients;
     }
         
 }
-
