@@ -46,8 +46,8 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         instructions = new JLabel("Please enter the number of hampers you require.");			//Instruction for what to do
         mAdultLabel = new JLabel("Number of adult males:");				//label describing 
         fAdultLabel = new JLabel("Number of adult females:");
-        overChildLabel = new JLabel("Number of children older than 8:");
-        underChildLabel = new JLabel("Number of children younger than 8:");
+        overChildLabel = new JLabel("Number of children older than eight:");
+        underChildLabel = new JLabel("Number of children younger than eight:");
         
         
         mAdultInput = new JTextField("e.g. 1", 15);    		//Example of what to enter
@@ -88,16 +88,17 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         this.add(submitPanel, BorderLayout.PAGE_END);
     }
     
-    public void actionPerformed(ActionEvent event){
-    	 mAdult = Integer.parseInt(mAdultLabel.getText());			//saving and validating info
-    	 fAdult = Integer.parseInt(fAdultLabel.getText());
-    	 overChild = Integer.parseInt(overChildLabel.getText());
-    	 underChild = Integer.parseInt(underChildLabel.getText());
+    public void actionPerformed(ActionEvent event) throws NumberFormatException{
+    	 mAdult = Integer.parseInt(mAdultInput.getText());			//saving and validating info
+    	 fAdult = Integer.parseInt(fAdultInput.getText());
+    	 overChild = Integer.parseInt(overChildInput.getText());
+    	 underChild = Integer.parseInt(underChildInput.getText());
         
         if(validateInput()){
             setClients(mAdult, fAdult, overChild, underChild);
-            // String hampNum = idProcessing();
-            JOptionPane.showMessageDialog(this, "Hamper created");
+            String hampVals = idProcessing();
+            JOptionPane.showMessageDialog(this, "Hamper created with: " + "\n" + hampVals);
+            this.dispose();
             
         }
     }
@@ -130,14 +131,14 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         
     }
     
-    // private String idProcessing(){
+     private String idProcessing(){
 
-    //     String ham = new String("Number of adult males: " + String.valueOf(mAdult) + "\n");				//Saving hampers
-    //     ham = ham + ("Number of adult females: " + String.valueOf(fAdult) + "\n");
-    //     ham = ham + ("Number of children older than 8: " + String.valueOf(overChild) + "\n");
-    //     ham = ham + ("Number of children younger than 8: " + String.valueOf(underChild) + "\n");
-    //     return ham;
-    // }    
+         String ham = new String("Number of adult males: " + String.valueOf(mAdult) + "\n");				//Saving hampers
+         ham = ham + ("Number of adult females: " + String.valueOf(fAdult) + "\n");
+         ham = ham + ("Number of children older than 8: " + String.valueOf(overChild) + "\n");
+         ham = ham + ("Number of children younger than 8: " + String.valueOf(underChild) + "\n");
+         return ham;
+    }    
     
     private boolean validateInput(){				//Validates if input is working
         
@@ -174,3 +175,4 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
     }
         
 }
+
