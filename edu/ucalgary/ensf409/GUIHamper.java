@@ -8,13 +8,12 @@ import java.awt.FlowLayout;
 
 public class GUIHamper extends JFrame implements ActionListener, MouseListener{
 
-	private static int hNum = 1;
-    private int mAdult;							//initialize variables needed 
+    private int mAdult;
     private int fAdult;
     private int overChild;
     private int underChild;
     
-    private JLabel instructions;  					
+    private JLabel instructions;  					//initialize variables
     private JLabel mAdultLabel;
     private JLabel fAdultLabel;
     private JLabel overChildLabel;
@@ -28,14 +27,14 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
     public GUIHamper(){
         super("Fill out the form for hampers");			
         setupGUI();
-        setSize(1920,1080);					//window size
+        setSize(1280,720);					//window size
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        	//close window on exit
         
     }
     
     public void setupGUI(){
         
-    	instructions = new JLabel("Please enter the number of hampers you require.");			//Instruction for what to do
+        instructions = new JLabel("Please enter the number of hampers you require.");			//Instruction for what to do
         mAdultLabel = new JLabel("Number of adult males:");				//label describing 
         fAdultLabel = new JLabel("Number of adult females:");
         overChildLabel = new JLabel("Number of children older than 8:");
@@ -87,8 +86,9 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
     	 underChild = Integer.parseInt(underChildLabel.getText());
         
         if(validateInput()){
+            Application(mAdult, fAdult, overChild, underChild);
             String hampNum = idProcessing();
-            JOptionPane.showMessageDialog(this, "Your number of hampers is " + hampNum);
+            JOptionPane.showMessageDialog(this, "Hamper created");
             
         }
     }
@@ -136,34 +136,28 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
 
         if(mAdult < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, mAdult + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
+            JOptionPane.showMessageDialog(this, mAdult + " Invalid number of Adult males, must be at least 0.");			//dialogue of working message
         }
         if(fAdult < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, fAdult + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
+            JOptionPane.showMessageDialog(this, fAdult + " Invalid number of Adult females, must be at least 0.");			//dialogue of working message
         }
         if(overChild < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, overChild + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
+            JOptionPane.showMessageDialog(this, overChild + " Invalid number of children over 8, must be at least 0.");			//dialogue of working message
         }
         if(underChild < 0){
             allInputValid = false;
-            JOptionPane.showMessageDialog(this, underChild + " is an invalid birth year. Pets must be born between 1922 and 2022.");			//dialogue of failing message
+            JOptionPane.showMessageDialog(this, underChild + " Invalid number of children under 8, must be at least 0.");			//dialogue of working message
+        }
+        
+        if(mAdult == 0 && fAdult == 0 && overChild == 0 && underChild == 0){
+            allInputValid = false;
+            JOptionPane.showMessageDialog(this, " There are no memebers inside the hamper");			//dialogue of working message
         }
         
         return allInputValid;
         
-    }
-
-    
-    public static void main(String[] args) {
-        hNum = GUIHamperNumber.getHamperNumber();
-        for(int i = 1; i <= hNum; i++) {
-        	EventQueue.invokeLater(() -> {						//calls GUI
-        		new GUIHamper().setVisible(true);      
-        		
-        });
-        }
     }
         
 }
