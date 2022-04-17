@@ -59,6 +59,7 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
         if(validateInput()){
             String hampNum = idProcessing();
             JOptionPane.showMessageDialog(this, "Your number of hampers is " + hampNum);
+            this.dispose();													//Closes the window after process is done
             for (int i = 1; i <= Integer.valueOf(hampNum); i++) {			//Calls hampers multiple hampers when required
             	new GUIHamper();
             	EventQueue.invokeLater(() -> {							//calling next GUI
@@ -66,6 +67,7 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
             });
             
             }
+            
         }
     }
     
@@ -110,12 +112,6 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
         return allInputValid;
         
     }
-    
-    
-    
-    public static int getHamperNumber() {
-		return hampers;
-	}
 
     
     public static void guiCaller() {
