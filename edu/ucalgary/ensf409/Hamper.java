@@ -40,10 +40,12 @@ public class Hamper {
     }
 
     public NutritionInfo getActualNutrition() {
+
         return this.actualNutrition;
     }
 
     public NutritionInfo getRequiredNutrition() {
+
         return this.requiredNutrition;
     }
 
@@ -55,6 +57,19 @@ public class Hamper {
             temporaryFV += newFood[b].getFruitsVeggies();
             temporaryProtein += newFood[b].getProtein();
             temporaryOther += newFood[b].getOther();
+        }
+        actualNutrition = new NutritionInfo(temporaryFV, temporaryCalories, temporaryGrains, temporaryProtein, temporaryOther);
+    }
+
+    public void addFoodItem(Food item) {
+        this.foodContents.add(item);
+        double temporaryCalories = 0 ,temporaryGrains = 0 ,temporaryFV = 0 ,temporaryProtein = 0 ,temporaryOther = 0;
+        for(int i = 0; i < this.foodContents.size(); i++) {
+            temporaryCalories += this.foodContents.get(i).getCalories();
+            temporaryGrains += this.foodContents.get(i).getGrains();
+            temporaryFV += this.foodContents.get(i).getFruitsVeggies();
+            temporaryProtein += this.foodContents.get(i).getProtein();
+            temporaryOther += this.foodContents.get(i).getOther();
         }
         actualNutrition = new NutritionInfo(temporaryFV, temporaryCalories, temporaryGrains, temporaryProtein, temporaryOther);
     }

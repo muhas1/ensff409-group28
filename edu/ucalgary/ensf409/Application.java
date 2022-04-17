@@ -29,9 +29,10 @@ public class Application {
         newF[1] = newPerson2;
 
         Hamper newHamper = new Hamper(newF, newFoodList);
-        System.out.println(newHamper.getActualNutrition().getProtein());
+        System.out.println(newHamper.getActualNutrition().getCalories());
         System.out.println(newHamper.getRequiredNutrition().getCalories());
-
+        newHamper.addFoodItem(myInventory.returnFoodItem(32));
+        System.out.println(newHamper.getActualNutrition().getCalories());
     }
 }   
  
