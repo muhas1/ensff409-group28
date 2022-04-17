@@ -13,11 +13,17 @@ public class NutritionInfo {
     private double[] nutritionArray = new double[5]; 
 
     public NutritionInfo(String fV, String cals, String grain, String prot, String other) {
-        this.CALORIES = Integer.parseInt(cals);
-        this.FRUITVEGGIES = Integer.parseInt(fV);
-        this.GRAINS = Integer.parseInt(grain);
-        this.PROTEIN = Integer.parseInt(prot);
-        this.OTHER = Integer.parseInt(other);
+        double tempcals = Integer.parseInt(cals);
+        double temporaryFV = Integer.parseInt(fV);
+        double tempgrains= Integer.parseInt(grain);
+        double tempprotein = Integer.parseInt(prot);
+        double tempother = Integer.parseInt(other);
+
+        this.FRUITVEGGIES = (tempcals * (temporaryFV/100));
+        this.CALORIES = tempcals;
+        this.GRAINS = (tempcals * (tempgrains/100));
+        this.PROTEIN = (tempcals * (tempprotein/100));
+        this.OTHER = (tempcals * (tempother/100));
 
     }
 
@@ -30,20 +36,20 @@ public class NutritionInfo {
     }
 
     public double getFV() {
-
-        return (this.CALORIES * this.FRUITVEGGIES/100);
+        
+        return this.FRUITVEGGIES;
 
     }
 
     public double getGrains() {
 
-        return (this.CALORIES * this.GRAINS/100);
+        return this.GRAINS;
 
     }
 
     public double getProtein() {
 
-        return (this.CALORIES * this.PROTEIN/100);
+        return this.PROTEIN;
 
     }
 
@@ -55,7 +61,7 @@ public class NutritionInfo {
 
     public double getOther() {
 
-        return (this.CALORIES * this.OTHER/100);
+        return this.OTHER;
 
     }
 
@@ -64,8 +70,5 @@ public class NutritionInfo {
         return this.nutritionArray;
 
     }
-
-
-
 
 }

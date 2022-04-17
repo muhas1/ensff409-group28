@@ -17,7 +17,7 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
     public GUIHamperNumber(){
         super("Fill out the form for hampers");			
         setupGUI();
-        setSize(1920,1080);					//window size
+        setSize(800,800);					//window size
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        	//close window on exit
         
     }

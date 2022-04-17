@@ -28,7 +28,7 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
     public GUIHamper(){
         super("Fill out the form for hampers");			
         setupGUI();
-        setSize(1920,1080);					//window size
+        setSize(800,800);					//window size
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        	//close window on exit
         
     }
@@ -155,15 +155,14 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         
     }
 
-    
-    public static void main(String[] args) {
-        hNum = GUIHamperNumber.getHamperNumber();
-        for(int i = 1; i <= hNum; i++) {
-        	EventQueue.invokeLater(() -> {						//calls GUI
-        		new GUIHamper().setVisible(true);      
-        		
-        });
-        }
-    }
+    // public static void main(String[] args) {
+    //     hNum = GUIHamperNumber.getHamperNumber();
+    //     for(int i = 1; i <= hNum; i++) {
+    //     	EventQueue.invokeLater(() -> {						//calls GUI
+    //     		new GUIHamper().setVisible(true);      
+
+    //     });
+    //     }
+    // }
         
 }
