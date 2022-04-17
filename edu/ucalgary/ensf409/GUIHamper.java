@@ -24,7 +24,7 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
     private JTextField fAdultInput;
     private JTextField overChildInput;
     private JTextField underChildInput;
-    private ArrayList<Integer> clients = new ArrayList<Integer>(); 
+    private static ArrayList<Integer> clients = new ArrayList<Integer>(); 
     
     public void setClients(int a, int f, int co, int cu) {
         clients.add(a);
@@ -97,7 +97,7 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         if(validateInput()){
             setClients(mAdult, fAdult, overChild, underChild);
             String hampVals = idProcessing();
-            JOptionPane.showMessageDialog(this, "Hamper created with: " + "\n" + hampVals);
+            JOptionPane.showMessageDialog(this, clients);
             this.dispose();
             
         }
@@ -170,8 +170,8 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         
     }
 
-    public ArrayList<Integer> returnClients() {
-        return this.clients;
+    public static ArrayList<Integer> returnClients() {
+        return clients;
     }
         
 }

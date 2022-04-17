@@ -17,8 +17,8 @@ public class Application {
         Food newItem = myInventory.returnFoodItem(1);
         // ArrayList<Food> newList = myInventory.getFoodItems();
         System.out.println(newItem.getFruitsVeggies());
-        People newPerson = new People(1, "AdultM", myInventory.getClient(1));
-        People newPerson2 = new People(1, "AdultM", myInventory.getClient(1));
+        People newPerson = new People(1, "AdultF", myInventory.getClient(1));
+        People newPerson2 = new People(1, "AdultF", myInventory.getClient(1));
         //System.out.println(newPerson.returnNeeds().getGrains());
         Food[] newFoodList = new Food[10];
         for(int i = 0; i < newFoodList.length; i++) {
@@ -30,8 +30,7 @@ public class Application {
 
         Hamper newHamper = new Hamper(newF, newFoodList);
         System.out.println(newHamper.getActualNutrition().getProtein());
-
-        GUIHamperNumber.guiCaller();
+        System.out.println(newHamper.getRequiredNutrition().getCalories());
 
     }
 }   
