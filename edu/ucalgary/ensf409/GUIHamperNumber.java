@@ -65,8 +65,10 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
     
     public void actionPerformed(ActionEvent event){
     	 hampers = Integer.parseInt(hampInput.getText());			//saving and validating info
+    	 name = nameInput.getText();
         
         if(validateInput()){
+        	System.out.println(name);
             String hampNum = idProcessing();
             JOptionPane.showMessageDialog(this, "Your number of hampers is " + hampNum);
             this.dispose();													//Closes the window after process is done
@@ -84,6 +86,9 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
     public void mouseClicked(MouseEvent event){					///mouse checks
         if(event.getSource().equals(hampInput))
         	hampInput.setText("");
+        
+        if(event.getSource().equals(nameInput))
+        	nameInput.setText("");
                 
     }
     
@@ -123,13 +128,16 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
         
     }
     
-    
     public String getName() {
-    	return this.name;
-    }
-
+    	return name;
+   }
     
-    public static void guiCaller() {
+    public static int getHamperNumber() {
+    	return hampers;
+    }
+   
+    
+    public static void main(String[] args) {
         
         EventQueue.invokeLater(() -> {						//calls GUI
             new GUIHamperNumber().setVisible(true);        
@@ -138,5 +146,4 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
 
 	
         
-}
-
+} 
