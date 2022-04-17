@@ -8,6 +8,9 @@ import java.awt.FlowLayout;
 public class GUIHamperNumber extends JFrame implements ActionListener, MouseListener{
 
     private static int hampers;
+    private String name;
+    private JLabel nameLabel;
+	private JTextField nameInput;
     
     private JLabel instructions;  					//initialize variables
     private JLabel hampLabel;
@@ -24,11 +27,16 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
     
     public void setupGUI() {
         
-        instructions = new JLabel("Please enter the number of hampers you require.");			//Instruction for what to do
+        instructions = new JLabel("Please enter your name and the number of hampers you require.");			//Instruction for what to do
+        nameLabel = new JLabel("Name:");
         hampLabel = new JLabel("Number of Hampers:");				//label describing 
         
+        
+        nameInput = new JTextField("e.g. Bill", 15);
         hampInput = new JTextField("e.g. 2", 15);    		//Example of what to enter
         
+        
+        nameInput.addMouseListener(this);
         hampInput.addMouseListener(this);					//check for mouse click
         
         JButton submitInfo = new JButton("Submit");			//button for submit
@@ -44,6 +52,8 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
         submitPanel.setLayout(new FlowLayout());
         
         headerPanel.add(instructions);
+        clientPanel.add(nameLabel);
+        clientPanel.add(nameInput);
         clientPanel.add(hampLabel);
         clientPanel.add(hampInput);
         submitPanel.add(submitInfo);
@@ -111,6 +121,11 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
         
         return allInputValid;
         
+    }
+    
+    
+    public String getName() {
+    	return this.name;
     }
 
     
