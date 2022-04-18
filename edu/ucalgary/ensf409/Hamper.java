@@ -73,4 +73,10 @@ public class Hamper {
         }
         actualNutrition = new NutritionInfo(temporaryFV, temporaryCalories, temporaryGrains, temporaryProtein, temporaryOther);
     }
+
+    public void returnFoodName() {
+        for (int i =0 ; i < this.foodContents.size(); i++) {
+            System.out.println(this.foodContents.get(i).getFoodName());
+        }
+    }
 }
