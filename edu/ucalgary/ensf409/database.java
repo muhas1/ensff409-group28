@@ -3,8 +3,6 @@ package edu.ucalgary.ensf409;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import java.sql.*;
 
 public class database {
@@ -58,7 +56,6 @@ public class database {
         try {
             Statement mySmt = dbConnect.createStatement();
             results = mySmt.executeQuery("SELECT * FROM AVAILABLE_FOOD");
-            int i = 0;
             while (results.next()) {
                 NutritionInfo tempInfo = new NutritionInfo(results.getString("FVContent"), results.getString("Calories"), results.getString("GrainContent"), results.getString("ProContent"), results.getString("Other"));
                 String[] tempString = new String[2];

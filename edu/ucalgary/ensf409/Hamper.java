@@ -79,4 +79,31 @@ public class Hamper {
             System.out.println(this.foodContents.get(i).getFoodName());
         }
     }
+
+    public People[] getPeopleArray() {
+        People[] tempFamily = this.family.toArray(new People[0]);
+        return tempFamily;
+    }
+
+    public void returnFamilyDetails() {
+        int m=0,f=0,co = 0 ,cu =0;
+        for (int i = 0; i < this.family.size(); i++) {
+            if (this.family.get(i).returnID() == 1) {
+                m++;
+            }
+            if (this.family.get(i).returnID() == 2) {
+                f++;
+            }
+            if (this.family.get(i).returnID() == 3) {
+                co++;
+            }
+            if (this.family.get(i).returnID() == 4) {
+                cu++;
+            }
+        }
+        System.out.println("Adult Males: " + m);
+        System.out.println("Adult Females: " + f);
+        System.out.println("Children Under 8: " + co);
+        System.out.println("Children Over 8: " + cu);
+    }
 }

@@ -4,10 +4,6 @@ import java.util.ArrayList;
 
 public class Application {
     
-    private int adultM;
-    private int adultF;
-    private int childO;
-    private int childU;
 
     public void applicationClass(People[] newF) {
         database myInventory = new database("jdbc:mysql://localhost/food_inventory");
@@ -28,21 +24,25 @@ public class Application {
         CaloricCalc newCalculator = new CaloricCalc(newList, newHamper);
 
         Hamper finalHamper = new Hamper(newF, newCalculator.calculateOptimalHamper());
-        System.out.println(finalHamper.getRequiredNutrition().getCalories());
-        System.out.println(finalHamper.getActualNutrition().getCalories());
+        System.out.println("# FAMILY LIST: ");
+        finalHamper.returnFamilyDetails();
+        System.out.println("# CALORIES # ");
+        System.out.println("Required: " + finalHamper.getRequiredNutrition().getCalories());
+        System.out.println("Actual: " + finalHamper.getActualNutrition().getCalories());
         System.out.println("# Grains #");
-        System.out.println(finalHamper.getRequiredNutrition().getGrains());
-        System.out.println(finalHamper.getActualNutrition().getGrains());
+        System.out.println("Required: " + finalHamper.getRequiredNutrition().getGrains());
+        System.out.println("Actual: " + finalHamper.getActualNutrition().getGrains());
         System.out.println("# Protein #");
-        System.out.println(finalHamper.getRequiredNutrition().getProtein());
-        System.out.println(finalHamper.getActualNutrition().getProtein());
+        System.out.println("Required: " + finalHamper.getRequiredNutrition().getProtein());
+        System.out.println("Actual: " + finalHamper.getActualNutrition().getProtein());
         System.out.println("# FruitVeggies #");
-        System.out.println(finalHamper.getRequiredNutrition().getFV());
-        System.out.println(finalHamper.getActualNutrition().getFV());
+        System.out.println("Required: " + finalHamper.getRequiredNutrition().getFV());
+        System.out.println("Actual: " + finalHamper.getActualNutrition().getFV());
         System.out.println("# Other #");
-        System.out.println(finalHamper.getRequiredNutrition().getOther());
-        System.out.println(finalHamper.getActualNutrition().getOther());
-
+        System.out.println("Required: " + finalHamper.getRequiredNutrition().getOther());
+        System.out.println("Actual: " + finalHamper.getActualNutrition().getOther());
+        System.out.println("# FOOD LIST #");
+        finalHamper.returnFoodName();
     }
 }   
  
