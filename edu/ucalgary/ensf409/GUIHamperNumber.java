@@ -136,7 +136,9 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
         });
     }
 
-	
+	public static void main(String[] args) {
+        guiCaller();
+    }
         
 }
 

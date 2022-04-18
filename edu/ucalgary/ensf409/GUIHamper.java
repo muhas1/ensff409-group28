@@ -24,7 +24,7 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
     private JTextField fAdultInput;
     private JTextField overChildInput;
     private JTextField underChildInput;
-    private static ArrayList<Integer> clients = new ArrayList<Integer>(); 
+    private ArrayList<Integer> clients = new ArrayList<Integer>(); 
     
     public void setClients(int a, int f, int co, int cu) {
         clients.add(a);
@@ -96,6 +96,8 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         
         if(validateInput()){
             setClients(mAdult, fAdult, overChild, underChild);
+            Application myApp = new Application();
+            myApp.applicationClass(returnPersonArray(this.clients));
             String hampVals = idProcessing();
             JOptionPane.showMessageDialog(this, clients);
             this.dispose();
@@ -170,9 +172,26 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         
     }
 
-    public static ArrayList<Integer> returnClients() {
-        return clients;
+    public ArrayList<Integer> returnClients() {
+
+        return this.clients;
     }
-        
+    
+    public People[] returnPersonArray(ArrayList<Integer> tempInteger) {
+        database tempInventory = new database("jdbc:mysql://localhost/food_inventory");
+        tempInventory.createConnection();
+        tempInventory.fillClientNeeds();
+        ArrayList<People> newClients = new ArrayList<>();
+        for(int i = 0; i < tempInteger.size(); i++) {
+            for(int a = 0; a < tempInteger.get(i); a++) {
+                newClients.add(new People(i+1, "M", tempInventory.getClient(i)));
+            }
+        }
+        People[] newF = new People[newClients.size()];
+        for(int j = 0; j < newClients.size(); j++) {
+            newF[j] = newClients.get(j);
+        }
+        return newF;
+    }
 }
 

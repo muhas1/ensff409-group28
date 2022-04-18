@@ -9,26 +9,17 @@ public class Application {
     private int childO;
     private int childU;
 
-    public static void main(String[] args) {
+    public void applicationClass(People[] newF) {
         database myInventory = new database("jdbc:mysql://localhost/food_inventory");
         myInventory.createConnection();
         myInventory.fillClientNeeds();
         myInventory.fillFoodList();
         Food newItem = myInventory.returnFoodItem(1);
         ArrayList<Food> newList = myInventory.getFoodItems();
-        //System.out.println(newItem.getFruitsVeggies());
-        People newPerson = new People(2, "AdultF", myInventory.getClient(1));
-        People newPerson2 = new People(3, "AdultF", myInventory.getClient(0));
-        //System.out.println(newPerson.returnNeeds().getGrains());
         Food[] newFoodList = new Food[10];
         for(int i = 0; i < newFoodList.length; i++) {
             newFoodList[i] = myInventory.returnFoodItem(i+1);
         }
-        People[] newF = new People[4];
-        newF[0] = newPerson;
-        newF[1] = newPerson2;
-        newF[2] = newPerson2;
-        newF[3] = newPerson2;
 
         Food[] emptyFoodList = new Food[1];
         emptyFoodList[0] = newItem;
