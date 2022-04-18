@@ -25,6 +25,13 @@ public class NutritionInfo {
         this.PROTEIN = (tempcals * (tempprotein/100));
         this.OTHER = (tempcals * (tempother/100));
 
+        // Setting Array
+        this.nutritionArray[0] = tempcals;;
+        this.nutritionArray[1] = (tempcals * (temporaryFV/100));;
+        this.nutritionArray[2] = (tempcals * (tempgrains/100));
+        this.nutritionArray[3] = (tempcals * (tempprotein/100));;
+        this.nutritionArray[4] = (tempcals * (tempother/100));
+
     }
 
     public NutritionInfo(Double fV, Double cals, Double grain, Double prot, Double other) {
@@ -33,6 +40,11 @@ public class NutritionInfo {
         this.GRAINS = grain;
         this.PROTEIN = prot;
         this.OTHER = other;
+        this.nutritionArray[0] = cals;
+        this.nutritionArray[1] = fV;
+        this.nutritionArray[2] = grain;
+        this.nutritionArray[3] = prot;
+        this.nutritionArray[4] = other;
     }
 
     public double getFV() {

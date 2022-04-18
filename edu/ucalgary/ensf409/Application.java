@@ -18,7 +18,7 @@ public class Application {
         ArrayList<Food> newList = myInventory.getFoodItems();
         //System.out.println(newItem.getFruitsVeggies());
         People newPerson = new People(2, "AdultF", myInventory.getClient(1));
-        People newPerson2 = new People(3, "AdultF", myInventory.getClient(2));
+        People newPerson2 = new People(3, "AdultF", myInventory.getClient(0));
         //System.out.println(newPerson.returnNeeds().getGrains());
         Food[] newFoodList = new Food[10];
         for(int i = 0; i < newFoodList.length; i++) {
@@ -32,30 +32,26 @@ public class Application {
 
         Food[] emptyFoodList = new Food[1];
         emptyFoodList[0] = newItem;
-        Hamper temporaryHamper = new Hamper(newF, emptyFoodList);
-        double percentage = 1.20;
-        double percentage2 = 1.20;
-        Hamper clientsHamper = new Hamper(newF, emptyFoodList);
-        while(percentage > 1.05) {
-            Food[] newArray = CaloricCalc.calculateOptimalHamper(temporaryHamper, newList);
-            clientsHamper = new Hamper(newF, newArray);
-            System.out.println("Ratio of Calories: " + percentage);
-            System.out.println("Ratio of Grains: " + percentage2);
-            percentage = clientsHamper.getActualNutrition().getCalories()/clientsHamper.getRequiredNutrition().getCalories();
-            percentage2 = clientsHamper.getActualNutrition().getGrains()/clientsHamper.getRequiredNutrition().getGrains();
-        }
 
-        System.out.println("# RATIOS #");
-        System.out.println("Ratio of Calories: " + percentage);
-        System.out.println("Ratio of Grains: " + percentage2);
-        System.out.println("# CALORIES #");
-        System.out.println(clientsHamper.getRequiredNutrition().getCalories());
-        System.out.println(clientsHamper.getActualNutrition().getCalories());
-        System.out.println("# GRAINS #");
-        System.out.println(clientsHamper.getRequiredNutrition().getGrains());
-        System.out.println(clientsHamper.getActualNutrition().getGrains());
-        System.out.println("# FOOD LIST");
-        clientsHamper.returnFoodName();
+        Hamper newHamper = new Hamper(newF, emptyFoodList);
+        CaloricCalc newCalculator = new CaloricCalc(newList, newHamper);
+
+        Hamper finalHamper = new Hamper(newF, newCalculator.calculateOptimalHamper());
+        System.out.println(finalHamper.getRequiredNutrition().getCalories());
+        System.out.println(finalHamper.getActualNutrition().getCalories());
+        System.out.println("# Grains #");
+        System.out.println(finalHamper.getRequiredNutrition().getGrains());
+        System.out.println(finalHamper.getActualNutrition().getGrains());
+        System.out.println("# Protein #");
+        System.out.println(finalHamper.getRequiredNutrition().getProtein());
+        System.out.println(finalHamper.getActualNutrition().getProtein());
+        System.out.println("# FruitVeggies #");
+        System.out.println(finalHamper.getRequiredNutrition().getFV());
+        System.out.println(finalHamper.getActualNutrition().getFV());
+        System.out.println("# Other #");
+        System.out.println(finalHamper.getRequiredNutrition().getOther());
+        System.out.println(finalHamper.getActualNutrition().getOther());
+
     }
 }   
  
