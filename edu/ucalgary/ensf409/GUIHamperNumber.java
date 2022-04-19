@@ -5,6 +5,9 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.FlowLayout;
 
+//This class is used in order to pull up a GUI so that a person may enter their name and the number of hampers which they wish to order
+//Then it calls a new GUI called "GUIHamper" so that clients can fill in the information of the people using the hamper
+
 public class GUIHamperNumber extends JFrame implements ActionListener, MouseListener{
 
     private static int hampers;
