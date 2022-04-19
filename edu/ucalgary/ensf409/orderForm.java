@@ -1,3 +1,8 @@
+//GROUP 28
+//Jason Pang
+//Arush Sanghal
+//Muhammad Shah
+
 package edu.ucalgary.ensf409;
 import java.io.FileWriter;
 import java.io.IOException;
