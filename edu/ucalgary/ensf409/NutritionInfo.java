@@ -26,10 +26,10 @@ public class NutritionInfo {
         this.OTHER = (tempcals * (tempother/100));
 
         // Setting Array
-        this.nutritionArray[0] = tempcals;;
-        this.nutritionArray[1] = (tempcals * (temporaryFV/100));;
+        this.nutritionArray[0] = tempcals;
+        this.nutritionArray[1] = (tempcals * (temporaryFV/100));
         this.nutritionArray[2] = (tempcals * (tempgrains/100));
-        this.nutritionArray[3] = (tempcals * (tempprotein/100));;
+        this.nutritionArray[3] = (tempcals * (tempprotein/100));
         this.nutritionArray[4] = (tempcals * (tempother/100));
 
     }

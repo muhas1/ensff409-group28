@@ -45,7 +45,7 @@ public class CaloricCalc {
             if ((this.foodHamper.get(i).getNutritionInfo().getNutArray()[index] != 0) && (i < this.foodHamper.size())) {
                 attributeBasket.add(this.foodHamper.get(i));
                 this.foodHamper.remove(i);
-                newData.deleteFoodList(i);
+                //newData.deleteFoodList(i);
                 newA += this.foodHamper.get(i).getNutritionInfo().getNutArray()[index];
                 percent = newA/needed;
             }

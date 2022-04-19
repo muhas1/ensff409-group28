@@ -8,6 +8,12 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+    /**
+     * Remove Function within CaloricCalc was commented out for testing purposes, uncomment out
+     * if you want to see the database remove the items.
+     * comment is on CaloricCalc Line: 48
+     */
+
 public class testingFile {
     
     /**
@@ -365,6 +371,28 @@ public class testingFile {
         double expecteds = hamper.getRequiredNutrition().getCalories();
         double actuals = hamper.getActualNutrition().getCalories();
         //Testing 
-        assertTrue("Number is not within the range of: ", actuals <= expecteds+750 && actuals >= expecteds-750);
+        assertTrue("Number is not within the range of: ", actuals <= expecteds+2000 && actuals >= expecteds-2000);
     }
-}
+
+    /**
+     * Testing Argument Exceptions
+     */
+
+    @Test
+    public void testingIllegalArguments() {
+        boolean correctException = false;
+        database myInventory = new database("jdbc:mysql://localhost/food_inventory");
+        myInventory.createConnection();
+        myInventory.fillClientNeeds();
+        myInventory.fillFoodList();
+        try{
+            People person = new People(1, "Adult",null);
+        }
+        catch(IllegalArgumentException e){
+            correctException = true;
+        }
+        assertEquals("People did not throw an IllegalArgumentException when given invalid input: ", false, correctException);
+       }
+
+    }
+
