@@ -3,8 +3,7 @@ package edu.ucalgary.ensf409;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import org.junit.*;
-
+import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -227,6 +226,145 @@ public class testingFile {
         assertArrayEquals("Error get Required Nutrition",expected, actual,1);
 
     }
-    
 
+    @Test
+    public void testAddingFoodItem() {
+        database tempDatabase = new database("jdbc:mysql://localhost/food_inventory");
+        tempDatabase.createConnection();
+        tempDatabase.fillFoodList();
+        tempDatabase.fillClientNeeds();
+        // Creating testing Person Array
+        People testPerson = new People(1, "AdultM", tempDatabase.getClient(1));
+        People[] testArray = new People[2];
+        testArray[0] = testPerson;
+        testArray[1] = testPerson;
+        // Creating a test list
+        Food[] newFoodList = new Food[1];
+        for(int i = 0; i < newFoodList.length; i++) {
+            newFoodList[i] = tempDatabase.returnFoodItem(i+1);
+        }
+        Hamper testHamper = new Hamper(testArray, newFoodList);
+        testHamper.addFoodItem(tempDatabase.returnFoodItem(2));
+        double[] expected = new double[]{240,192,0,24,24};
+        double[] actual = testHamper.getActualNutrition().getNutArray();
+        assertArrayEquals("Arrays are not equal", expected, actual,1);
+    }
+
+    @Test
+    public void testReturnClients() {
+        database tempDatabase = new database("jdbc:mysql://localhost/food_inventory");
+        tempDatabase.createConnection();
+        tempDatabase.fillFoodList();
+        tempDatabase.fillClientNeeds();
+        // Creating testing Person Array
+        People testPerson = new People(1, "AdultM", tempDatabase.getClient(1));
+        People[] testArray = new People[2];
+        testArray[0] = testPerson;
+        testArray[1] = testPerson;
+        // Creating a test list
+        Food[] newFoodList = new Food[1];
+        for(int i = 0; i < newFoodList.length; i++) {
+            newFoodList[i] = tempDatabase.returnFoodItem(i+1);
+        }
+        Hamper testHamper = new Hamper(testArray, newFoodList);
+        People[] expected = testArray;
+        People[] actual = testHamper.getPeopleArray();
+        assertArrayEquals("Arrays are not equal",expected, actual);
+    }
+
+    /**
+     * NutritionInfo tests
+     */
+
+    @Test
+    public void testConstructorNutInfo() {
+        NutritionInfo nInfo = new NutritionInfo("88", "838", "0", "0", "12");
+        assertNotNull("Constructor did not work",nInfo);
+    }
+    
+    @Test
+    public void testNutritionInfoGetters() {
+        NutritionInfo nInfo = new NutritionInfo("88", "838", "0", "0", "12");
+        double expected = 838.0;
+        double actual = nInfo.getCalories();
+        assertEquals("Calories are not Equal",expected, actual,1);
+        expected = 737.44;
+        actual = nInfo.getFV();
+        assertEquals("Calories are not Equal",expected, actual,1);
+        expected = 0;
+        actual = nInfo.getGrains();
+        assertEquals("Calories are not Equal",expected, actual,1);
+        expected = 0;
+        actual = nInfo.getProtein();
+        assertEquals("Calories are not Equal",expected, actual,1);
+        expected = 100.56;
+        actual = nInfo.getOther();
+        assertEquals("Calories are not Equal",expected, actual,1);
+        
+    }
+
+    @Test
+    public void testNutrInfoArray() {
+        NutritionInfo nInfo = new NutritionInfo(120.0, 420.0, 0.0, 0.0, 300.0);
+        double[] expected = new double[]{420.0,120.0,0.0,0.0,300.0}; 
+        double[] actual = nInfo.getNutArray();
+        assertArrayEquals("Arrays are not equal to eachother",expected, actual,1);
+    }
+
+    /**
+     * Caloric Calculator Tests
+     */
+
+    @Test
+    public void testCaloricCalcConstructor() {
+        // Creating testing Person Array with Random values that make up the first 4 items in the Database
+        People testPerson = new People(1, "Test", new NutritionInfo(288.0, 984.0, 0.0, 36.0, 536.0));
+        People[] testArray = new People[2];
+        testArray[0] = testPerson;
+        testArray[1] = testPerson;
+        // Creating a Foodlist with 10 items
+        database tempDatabase = new database("jdbc:mysql://localhost/food_inventory");
+        tempDatabase.createConnection();
+        tempDatabase.fillFoodList();
+        tempDatabase.fillClientNeeds();
+        // Creating a test list
+        Food[] newFoodList = new Food[10];
+        for(int i = 0; i < newFoodList.length; i++) {
+            newFoodList[i] = tempDatabase.returnFoodItem(i+1);
+        }
+        ArrayList<Food> tempInventory = new ArrayList<>();
+        for(int a = 0; a < newFoodList.length; a++) {
+            tempInventory.add(newFoodList[a]);
+        }
+        
+        // Creating a Hamper 
+        Hamper testHamper = new Hamper(testArray, newFoodList);
+        CaloricCalc testCaloricCalc = new CaloricCalc(tempInventory, testHamper);
+        assertNotNull("Constructor did not initialize properly",testCaloricCalc);
+    }
+
+    @Test
+    public void testCaloricCalculator() {
+
+        database myInventory = new database("jdbc:mysql://localhost/food_inventory");
+        myInventory.createConnection();
+        myInventory.fillClientNeeds();
+        myInventory.fillFoodList();
+        Food newItem = myInventory.returnFoodItem(1);
+        ArrayList<Food> newList = myInventory.getFoodItems();
+        People tempPerson = new People(1, "Fake", myInventory.getClient(0));
+        People tempPerson2 = new People(2, "Fake", myInventory.getClient(1));
+        People[] newF = new People[]{tempPerson,tempPerson2,tempPerson,tempPerson};
+        Food[] emptyFoodList = new Food[1];
+        emptyFoodList[0] = newItem;
+
+        Hamper newHamper = new Hamper(newF, emptyFoodList);
+        CaloricCalc newCalculator = new CaloricCalc(newList, newHamper);
+
+        Hamper hamper = new Hamper(newF, newCalculator.calculateOptimalHamper());
+        double expecteds = hamper.getRequiredNutrition().getCalories();
+        double actuals = hamper.getActualNutrition().getCalories();
+        //Testing 
+        assertTrue("Number is not within the range of: ", actuals <= expecteds+750 && actuals >= expecteds-750);
+    }
 }

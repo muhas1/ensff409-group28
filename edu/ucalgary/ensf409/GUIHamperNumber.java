@@ -84,7 +84,8 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
     public void mouseClicked(MouseEvent event){					///mouse checks
         if(event.getSource().equals(hampInput))
         	hampInput.setText("");
-                
+        if(event.getSource().equals(nameInput))
+        	nameInput.setText("");
     }
     
     public void mouseEntered(MouseEvent event){

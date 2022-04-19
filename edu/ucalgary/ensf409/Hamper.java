@@ -80,6 +80,14 @@ public class Hamper {
         }
     }
 
+    public String returnFoodString() {
+        String temp = "";
+        for (int i =0 ; i < this.foodContents.size(); i++) {
+            temp += (this.foodContents.get(i).getFoodName()) + '\n';
+        }
+        return temp;
+    }
+
     public People[] getPeopleArray() {
         People[] tempFamily = this.family.toArray(new People[0]);
         return tempFamily;

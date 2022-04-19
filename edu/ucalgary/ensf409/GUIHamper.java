@@ -3,6 +3,9 @@ package edu.ucalgary.ensf409;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.*;
+
+import org.junit.runner.OrderWithValidator;
+
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.awt.FlowLayout;
@@ -98,8 +101,8 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
             setClients(mAdult, fAdult, overChild, underChild);
             Application myApp = new Application();
             myApp.applicationClass(returnPersonArray(this.clients));
-            String hampVals = idProcessing();
-            JOptionPane.showMessageDialog(this, clients);
+            orderForm newForm = new orderForm();
+            JOptionPane.showMessageDialog(this, newForm.createFoodString(myApp.returnHamper()));
             this.dispose();
             
         }

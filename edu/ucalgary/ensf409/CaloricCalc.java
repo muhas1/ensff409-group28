@@ -27,11 +27,7 @@ public class CaloricCalc {
         ArrayList<Food> temporaryHamper = new ArrayList<>();
         ArrayList<Food> newFamilyHamper = calculateAttribute(0, this.caloriesNeeded, temporaryHamper, 0);
         
-        Food[] tempFood = new Food[newFamilyHamper.size()]; 
-        for (int a = 0; a < newFamilyHamper.size(); a++) {
-            tempFood[a] = newFamilyHamper.get(a);
-        }
-
+        Food[] tempFood = newFamilyHamper.toArray(new Food[0]);
         return tempFood;
     }   
 
@@ -43,7 +39,7 @@ public class CaloricCalc {
         int i = 0;
         while (( percent < 0.8 || percent > 1.2) && (i < this.foodHamper.size())) {
 
-            if ((this.foodHamper.get(i).getNutritionInfo().getNutArray()[index] != 0)) {
+            if ((this.foodHamper.get(i).getNutritionInfo().getNutArray()[index] != 0) && (i < this.foodHamper.size())) {
                 attributeBasket.add(this.foodHamper.get(i));
                 this.foodHamper.remove(i);
                 newA += this.foodHamper.get(i).getNutritionInfo().getNutArray()[index];

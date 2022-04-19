@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Application {
     
+    Hamper actualHamper;
 
     public void applicationClass(People[] newF) {
         database myInventory = new database("jdbc:mysql://localhost/food_inventory");
@@ -20,6 +21,7 @@ public class Application {
         CaloricCalc newCalculator = new CaloricCalc(newList, newHamper);
 
         Hamper finalHamper = new Hamper(newF, newCalculator.calculateOptimalHamper());
+        this.actualHamper = finalHamper;
         System.out.println("# FAMILY LIST: ");
         finalHamper.returnFamilyDetails();
         System.out.println("# CALORIES # ");
@@ -39,6 +41,11 @@ public class Application {
         System.out.println("Actual: " + finalHamper.getActualNutrition().getOther());
         System.out.println("# FOOD LIST #");
         finalHamper.returnFoodName();
+        
+    }
+
+    public Hamper returnHamper() {
+        return this.actualHamper;
     }
 }   
  
