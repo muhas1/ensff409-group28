@@ -11,14 +11,14 @@ public class orderForm {
      * which will contain all the neccesary items and also the Clients that make up the hamper.
      */
 
-    public String createFoodString(Hamper hamper) {
+    public String createFoodString(Hamper hamper) {     //used to grab the string from hamper so it came be used sent to the GUI to display information
         String temp = "";
         temp += hamper.stringFamilyDetails();
         temp += hamper.returnFoodString();
         return temp;
     }
 
-    public void printToText(Hamper hamper) {
+    public void printToText(Hamper hamper) {        //This is used to print the hamper order along with client information to a text file called "ClientOrder.txt"
         
         try {
             FileWriter myWriter = new FileWriter("ClientOrder.txt");
