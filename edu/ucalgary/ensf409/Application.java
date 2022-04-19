@@ -12,10 +12,6 @@ public class Application {
         myInventory.fillFoodList();
         Food newItem = myInventory.returnFoodItem(1);
         ArrayList<Food> newList = myInventory.getFoodItems();
-        Food[] newFoodList = new Food[10];
-        for(int i = 0; i < newFoodList.length; i++) {
-            newFoodList[i] = myInventory.returnFoodItem(i+1);
-        }
 
         Food[] emptyFoodList = new Food[1];
         emptyFoodList[0] = newItem;

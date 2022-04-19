@@ -85,15 +85,5 @@ public class database {
     public Food returnFoodItem(int id) {
         return this.availabe_food.get(id-1);
     }
-
-    // Simply for testing purposes
-    // public static void main(String[] args) {
-    //     database myInventory = new database("jdbc:mysql://localhost/food_inventory");
-    //     myInventory.createConnection();
-    //     myInventory.fillClientNeeds();
-    //     System.out.println(myInventory.daily_client_needs[1].getCalories());
-    //     myInventory.fillFoodList();
-    //     Food newItem = myInventory.availabe_food.get(154);
-    //     System.out.println(newItem.getFoodID());
-    // }
+    
 }
