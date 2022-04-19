@@ -2,9 +2,12 @@ package edu.ucalgary.ensf409;
 
 import java.util.ArrayList;
 
+//Class is used to find the best combination of food for a hamper containing a specified amount of people
+//Uses an algorithm to compare items in a database and stores those items in an array and returns them afterwards
+
 public class CaloricCalc {
     
-    private double caloriesNeeded = 0;
+    private double caloriesNeeded = 0;			//initialize variables
     private double grainsNeeded = 0;
     private double proteinNeeded = 0;
     private double fruitveggiesNeeded = 0;
@@ -12,7 +15,7 @@ public class CaloricCalc {
     private ArrayList<Food> foodHamper = new ArrayList<Food>();
     private Hamper newHamperStorage;
 
-    public CaloricCalc(ArrayList<Food> inventory, Hamper newHamper) {
+    public CaloricCalc(ArrayList<Food> inventory, Hamper newHamper) {	//constructor for CaloricCalc
         this.foodHamper = inventory;
         this.newHamperStorage = newHamper;
         this.caloriesNeeded = newHamper.getRequiredNutrition().getCalories();
@@ -22,7 +25,7 @@ public class CaloricCalc {
         this.otherNeeded = newHamper.getRequiredNutrition().getOther();
     }
 
-    public Food[] calculateOptimalHamper() {
+    public Food[] calculateOptimalHamper() {					//used to find the optimal hamper for the number of people using it
         ArrayList<Food> temporaryHamper = new ArrayList<>();
         ArrayList<Food> newFamilyHamper = calculateAttribute(0, this.caloriesNeeded, temporaryHamper, 0);
         
@@ -30,7 +33,7 @@ public class CaloricCalc {
         return tempFood;
     }   
 
-    public ArrayList<Food> calculateAttribute(double actual, double needed, ArrayList<Food> inventory, int index) {
+    public ArrayList<Food> calculateAttribute(double actual, double needed, ArrayList<Food> inventory, int index) {		//algorithm used to find which items from the database function for the purpose
         ArrayList<Food> attributeBasket = inventory;
         double newA = actual;
         double percent = newA/needed;
