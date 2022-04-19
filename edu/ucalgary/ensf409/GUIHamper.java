@@ -7,6 +7,9 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.awt.FlowLayout;
 
+//Used to allow clients to fill in the contents of people using the hamper. After which sends a call over to application to begin going through
+// the rest of the the files
+
 public class GUIHamper extends JFrame implements ActionListener, MouseListener{
 
     private int mAdult;
