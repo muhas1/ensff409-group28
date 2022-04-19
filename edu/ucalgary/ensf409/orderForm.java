@@ -4,6 +4,7 @@ import java.io.IOException;
 
 public class orderForm {
     
+    //adds the family info and food info into a hamper
     public String createFoodString(Hamper hamper) {
         String temp = "";
         temp += hamper.stringFamilyDetails();
@@ -13,6 +14,7 @@ public class orderForm {
 
     public void printToText(Hamper hamper) {
         
+        //Prints the orderform to a text file
         try {
             FileWriter myWriter = new FileWriter("ClientOrder.txt");
             myWriter.write(createFoodString(hamper));
