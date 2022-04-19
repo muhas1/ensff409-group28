@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import java.sql.*;
 
+//used to create a connect to the database and import information from the tables in the database so they can be used easily with the rest of the classes
+
 public class database {
 
     private String DBURL = "";
@@ -14,11 +16,11 @@ public class database {
     private static Connection dbConnect;
     private static ResultSet results;
 
-    public database(String db_URL) {
+    public database(String db_URL) {        //constructor to call the database
         this.DBURL = db_URL;
     }
     
-    public void createConnection() {
+    public void createConnection() {            //creates a connection from the code to the database
         try {
             dbConnect = DriverManager.getConnection(DBURL, "student", "ensf409");
         } catch (SQLException e) {
@@ -26,11 +28,11 @@ public class database {
         }
     }
 
-    public String getDBURL() {
+    public String getDBURL() {          //gets the database URL
          return this.DBURL;
     }
 
-    public void fillClientNeeds() {
+    public void fillClientNeeds() {     //fills the needs of the client from the database
 
         NutritionInfo temporaryStorage[] = new NutritionInfo[4];
 
@@ -51,7 +53,7 @@ public class database {
         this.daily_client_needs = temporaryStorage;
     }
 
-    public void fillFoodList() {
+    public void fillFoodList() {            //fills the list of available food from the database
 
         try {
             Statement mySmt = dbConnect.createStatement();
@@ -70,7 +72,7 @@ public class database {
 
     }
 
-    public void deleteFoodList(int id) {
+    public void deleteFoodList(int id) {            //removes a food item from the available list
         try {
             
             String query = "DELETE FROM available_food WHERE ItemID = ?";
@@ -89,19 +91,19 @@ public class database {
         }
     }
 
-    public NutritionInfo[] getClients() {
+    public NutritionInfo[] getClients() {           //returns the daily needs of the clients
         return this.daily_client_needs;
     }
 
-    public NutritionInfo getClient(int id) {
+    public NutritionInfo getClient(int id) {        //returns the daily needs of a specific client
         return this.daily_client_needs[id];
     }
 
-    public ArrayList<Food> getFoodItems() {
+    public ArrayList<Food> getFoodItems() {         //returns items of food from the available list
         return this.availabe_food;
     }
 
-    public Food returnFoodItem(int id) {
+    public Food returnFoodItem(int id) {            //returns a specific food item from the available list
         return this.availabe_food.get(id-1);
     }
     
