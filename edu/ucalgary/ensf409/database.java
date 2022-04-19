@@ -70,6 +70,27 @@ public class database {
 
     }
 
+    public void deleteFoodList(int id) {
+        try {
+            
+            String query = "DELETE FROM available_food WHERE ItemID = ?";
+            
+            PreparedStatement myStmt = dbConnect.prepareStatement(query);
+            
+            myStmt.setInt(1,  id);
+            
+            int rowCount = myStmt.executeUpdate();
+            
+            System.out.println("Rows affected: " + rowCount);
+            
+            myStmt.close();
+        
+        } catch (SQLException ex) {
+            
+            ex.printStackTrace();
+        }
+    }
+
     public NutritionInfo[] getClients() {
         return this.daily_client_needs;
     }

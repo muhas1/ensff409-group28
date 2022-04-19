@@ -33,14 +33,16 @@ public class CaloricCalc {
     public ArrayList<Food> calculateAttribute(double actual, double needed, ArrayList<Food> inventory, int index) {
         ArrayList<Food> attributeBasket = inventory;
         double newA = actual;
-        double percent = newA/needed; 
-
+        double percent = newA/needed;
+        database newData = new database("jdbc:mysql://localhost/food_inventory");
+        newData.createConnection();
         int i = 0;
         while (( percent < 0.8 || percent > 1.2) && (i < this.foodHamper.size())) {
 
             if ((this.foodHamper.get(i).getNutritionInfo().getNutArray()[index] != 0) && (i < this.foodHamper.size())) {
                 attributeBasket.add(this.foodHamper.get(i));
                 this.foodHamper.remove(i);
+                newData.deleteFoodList(i);
                 newA += this.foodHamper.get(i).getNutritionInfo().getNutArray()[index];
                 percent = newA/needed;
             }
