@@ -1,5 +1,7 @@
 package edu.ucalgary.ensf409;
 
+//Gets the different values related to a persons age and id, and gathers the needs for that age group
+
 public class People {
 	private int ID = 0;				//initialize required variables
 	private String AGE = null;
