@@ -1,3 +1,5 @@
+package edu.ucalgary.ensf409;
+
 public class Food {
 	
 	//Used in order to find and store the nutritional values of different foods in the inventory for later usage.

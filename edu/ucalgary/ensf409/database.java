@@ -79,9 +79,7 @@ public class database {
             
             myStmt.setInt(1,  id);
             
-            int rowCount = myStmt.executeUpdate();
-            
-            System.out.println("Rows affected: " + rowCount);
+            myStmt.executeUpdate();
             
             myStmt.close();
         
