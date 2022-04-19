@@ -6,7 +6,7 @@ public class People {
 	private NutritionInfo NEEDS = null;
 	
 	
-	public People(int id, String age, NutritionInfo needs) {		//constructor for people class
+	public People(int id, String age, NutritionInfo needs) throws IllegalArgumentException {		//constructor for people class
 		this.ID = id;				//stores sent values into the variables declared
 		this.AGE = age;
 		this.NEEDS = needs;

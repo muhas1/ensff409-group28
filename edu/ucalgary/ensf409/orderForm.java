@@ -4,6 +4,13 @@ import java.io.IOException;
 
 public class orderForm {
     
+    /**
+     * createFoodString will receive the hamper, within the hamper there exists a function that will return
+     * every food item that has been created by Caloric Calc. 
+     * OrderForm then also contains PrintToText which uses FileWriter to output a Text file with the name of ClientOrder
+     * which will contain all the neccesary items and also the Clients that make up the hamper.
+     */
+
     public String createFoodString(Hamper hamper) {
         String temp = "";
         temp += hamper.stringFamilyDetails();

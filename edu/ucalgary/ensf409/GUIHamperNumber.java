@@ -114,7 +114,7 @@ public class GUIHamperNumber extends JFrame implements ActionListener, MouseList
         return ham;
     }    
     
-    private boolean validateInput(){				//Validates if input is working
+    private boolean validateInput() throws IllegalArgumentException {				//Validates if input is working
         
         boolean allInputValid = true;
 

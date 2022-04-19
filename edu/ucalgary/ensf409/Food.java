@@ -7,7 +7,7 @@ public class Food {
     private String[] FOODINFO = new String[2];			//initialize variables
     private NutritionInfo NUTR_INFO = new NutritionInfo("0", "0", "0", "0", "0");
 
-    public Food(String[] info, NutritionInfo nInfo) {		//constructors for Food
+    public Food(String[] info, NutritionInfo nInfo) throws IllegalArgumentException {		//constructors for Food
         this.FOODINFO = info;
         this.NUTR_INFO = nInfo;
     }

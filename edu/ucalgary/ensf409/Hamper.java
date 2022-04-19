@@ -10,7 +10,7 @@ public class Hamper {
     private NutritionInfo requiredNutrition;
     private NutritionInfo actualNutrition;
 
-    public Hamper(People[] newFamily, Food[] newFood) {				//works as the constructor for the hamper class
+    public Hamper(People[] newFamily, Food[] newFood) throws IllegalArgumentException {				//works as the constructor for the hamper class
 
         for(int i = 0; i < newFamily.length; i++) {
             this.family.add(newFamily[i]);
