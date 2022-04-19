@@ -1,0 +1,18 @@
+Clients: 
+AdultM: 2
+AdultF: 1
+Children Under 8: 2
+Children Over 8: 1
+
+Contents: 
+Tomato Sauce, jar
+Tomato Sauce, jar
+Apple, dozen
+Chicken broth, can
+Broccoli, 3 bunches
+Wheat bread, loaf
+Wheat bread, loaf
+Orange, dozen
+Eggs, dozen
+Pasta, dry, pound
+Tuna, six small cans

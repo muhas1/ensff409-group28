@@ -133,15 +133,6 @@ public class GUIHamper extends JFrame implements ActionListener, MouseListener{
         
     }
     
-     private String idProcessing(){
-
-         String ham = new String("Number of adult males: " + String.valueOf(mAdult) + "\n");				//Saving hampers
-         ham = ham + ("Number of adult females: " + String.valueOf(fAdult) + "\n");
-         ham = ham + ("Number of children older than 8: " + String.valueOf(overChild) + "\n");
-         ham = ham + ("Number of children younger than 8: " + String.valueOf(underChild) + "\n");
-         return ham;
-    }    
-    
     private boolean validateInput(){				//Validates if input is working
         
         boolean allInputValid = true;
