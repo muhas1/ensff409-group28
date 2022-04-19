@@ -81,7 +81,7 @@ public class Hamper {
     }
 
     public String returnFoodString() {
-        String temp = "";
+        String temp = "Contents: " + "\n";
         for (int i =0 ; i < this.foodContents.size(); i++) {
             temp += (this.foodContents.get(i).getFoodName()) + '\n';
         }
@@ -113,5 +113,31 @@ public class Hamper {
         System.out.println("Adult Females: " + f);
         System.out.println("Children Under 8: " + co);
         System.out.println("Children Over 8: " + cu);
+    }
+
+    public String stringFamilyDetails() {
+        int m=0,f=0,co = 0 ,cu =0;
+        for (int i = 0; i < this.family.size(); i++) {
+            if (this.family.get(i).returnID() == 1) {
+                m++;
+            }
+            if (this.family.get(i).returnID() == 2) {
+                f++;
+            }
+            if (this.family.get(i).returnID() == 3) {
+                co++;
+            }
+            if (this.family.get(i).returnID() == 4) {
+                cu++;
+            }
+        }
+        String temp = "";
+        temp += "Clients: " + "\n";
+        temp += "AdultM: " + m + "\n";
+        temp += "AdultF: " + f + "\n";
+        temp += "Children Under 8: " + cu + "\n";
+        temp += "Children Over 8: " + co + "\n";
+        temp += "\n";
+        return temp;
     }
 }

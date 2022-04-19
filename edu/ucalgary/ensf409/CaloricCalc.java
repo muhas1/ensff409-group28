@@ -1,7 +1,6 @@
 package edu.ucalgary.ensf409;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class CaloricCalc {
     

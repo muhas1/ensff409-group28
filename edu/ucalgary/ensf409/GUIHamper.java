@@ -1,10 +1,7 @@
 package edu.ucalgary.ensf409;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.*;
-
-import org.junit.runner.OrderWithValidator;
 
 import java.awt.event.*;
 import java.util.ArrayList;

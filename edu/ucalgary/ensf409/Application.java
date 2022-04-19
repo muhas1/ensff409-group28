@@ -41,7 +41,8 @@ public class Application {
         System.out.println("Actual: " + finalHamper.getActualNutrition().getOther());
         System.out.println("# FOOD LIST #");
         finalHamper.returnFoodName();
-        
+        orderForm newOrder = new orderForm();
+        newOrder.printToText(this.actualHamper);
     }
 
     public Hamper returnHamper() {
