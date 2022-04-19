@@ -1,3 +1,8 @@
+//GROUP 28
+//Jason Pang
+//Arush Sanghal
+//Muhammad Shah
+
 package edu.ucalgary.ensf409;
 
 //Gets the different values related to a persons age and id, and gathers the needs for that age group
